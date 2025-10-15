@@ -1,5 +1,5 @@
-let gameBoard = ["", "", "", "", "", "", "", "", ""]
-let currentPlayer = "X"
+let gameBoard = ['', '','' , '', '', '', '', '', '']
+let currentPlayer = 'X'
 let gameActive = true
 
 // Winning conditions
@@ -11,26 +11,26 @@ const winningConditions = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6],
-];
+  [2, 4, 6]
+]
 
-const statusDisplay = document.getElementById("game-status")
-const cells = document.querySelectorAll(".cell")
-const restartButton = document.getElementById("restart-button")
+const statusDisplay = document.getElementById('game-status')
+const cells = document.querySelectorAll('.cell')
+const restartButton = document.getElementById('restart-button')
 
-statusDisplay.innerText = `Player X's turn`
+statusDisplay.innerText = 'Player Xs turn'
 
-cells.forEach((cell) => cell.addEventListener("click", handleCellClick))
-restartButton.addEventListener("click", restartGame)
+cells.forEach((cell) => cell.addEventListener('click', handleCellClick))
+restartButton.addEventListener('click', restartGame)
 
-function handleCellClick(e) {
+function handleCellClick (e) {
   const clickedCell = e.target
   const clickedCellIndex = parseInt(
-    clickedCell.getAttribute("data-cell-index")
+    clickedCell.getAttribute('data-cell-index')
   )
 
   // Ignore click if the csll has already been clicked
-  if (gameBoard[clickedCellIndex] !== "" || !gameActive) {
+  if (gameBoard[clickedCellIndex] !== '' || !gameActive) {
     return
   }
 
@@ -38,21 +38,21 @@ function handleCellClick(e) {
   gameBoard[clickedCellIndex] = currentPlayer
   clickedCell.innerText = currentPlayer
   clickedCell.classList.add(currentPlayer.toLowerCase())
-  clickedCell.classList.add("filled")
+  clickedCell.classList.add('filled')
 
   checkResult()
 }
 
 // Check for a winner or draw
-function checkResult() {
+function checkResult () {
   let roundWon = false
   for (let i = 0; i < winningConditions.length; i++) {
     const winCondition = winningConditions[i]
-    let pos1 = gameBoard[winCondition[0]]
-    let pos2 = gameBoard[winCondition[1]]
-    let pos3 = gameBoard[winCondition[2]]
+    const pos1 = gameBoard[winCondition[0]]
+    const pos2 = gameBoard[winCondition[1]]
+    const pos3 = gameBoard[winCondition[2]]
 
-    if (pos1 === "" || pos2 === "" || pos3 === "") {
+    if (pos1 === '' || pos2 === '' || pos3 === '') {
       continue
     }
     if (pos1 === pos2 && pos2 === pos3) {
@@ -67,9 +67,9 @@ function checkResult() {
     return
   }
 
-  let roundDraw = !gameBoard.includes("")
+  const roundDraw = !gameBoard.includes('')
   if (roundDraw) {
-    statusDisplay.innerText = `Game ended in a draw!`
+    statusDisplay.innerText = 'Game ended in a draw!'
     gameActive = false
     return
   }
@@ -79,19 +79,19 @@ function checkResult() {
 }
 
 // Switch the player
-function changePlayer() {
-  currentPlayer = currentPlayer === "X" ? "O" : "X"
+function changePlayer () {
+  currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
   statusDisplay.innerText = `Player ${currentPlayer}'s turn`
 }
 
 // Reset the game board
-function restartGame() {
-  gameBoard = ["", "", "", "", "", "", "", "", ""]
+function restartGame () {
+  gameBoard = ['', '', '', '', '', '', '', '', '']
   gameActive = true
-  currentPlayer = "X"
+  currentPlayer = 'X'
   statusDisplay.innerText = `Player ${currentPlayer}'s turn`
   cells.forEach((cell) => {
-    cell.innerText = ""
-    cell.classList.remove("x", "o", "filled")
+    cell.innerText = ''
+    cell.classList.remove('x', 'o', 'filled')
   })
 }
