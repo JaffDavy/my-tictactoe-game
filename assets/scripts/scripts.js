@@ -1,4 +1,4 @@
-let gameBoard = ['', '','' , '', '', '', '', '', '']
+let gameBoard = ['', '', '', '', '', '', '', '', '']
 let currentPlayer = 'X'
 let gameActive = true
 
