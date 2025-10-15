@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+
+:root {
+  --background-color: #0d1117;
+  --game-container-bg: #161b22;
+  --border-color: #30363d;
+  --cell-bg: #21262d;
+  --x-color: #00e1ff;
+  --o-color: #ff6868;
+  --glow-x-color: #00e1ff80;
+  --glow-o-color: #ff686880;
+  --status-color: #c9d1d9;
+  --button-bg: #2ea44f;
+  --button-hover-bg: #2c974b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: Orbitron, sans-serif;
+  color: var(--status-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.game-container {
+  text-align: center;
+  padding: 40px;
+  background-color: var(--game-container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 0 20px #00000080;
+  width: 100%;
+  max-width: 450px;
+}
+
+#game-status {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Keep the board square */
+  margin: 0 auto 30px;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.cell {
+  background-color: var(--cell-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.cell:hover:not(.filled) {
+  background-color: var(--border-color);
+}
+
+.cell.filled {
+  cursor: not-allowed;
+}
+
+.cell.x {
+  color: var(--x-color);
+  text-shadow: 0 0 10px var(--glow-x-color), 0 0 20px var(--glow-x-color);
+}
+
+.cell.o {
+  color: var(--o-color);
+  text-shadow: 0 0 10px var(--glow-o-color), 0 0 20px var(--glow-o-color);
+}
+
+#restart-button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-family: Orbitron, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#restart-button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+#restart-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+  .game-container {
+    padding: 20px;
+  }
+
+  #game-status {
+    font-size: 1.5rem;
+  }
+
+  .cell {
+    font-size: 3rem;
+  }
+}
